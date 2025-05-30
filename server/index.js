@@ -35,7 +35,6 @@ app.use('/auth', authRoutes);
 app.use('/painter', painterRoutes);
 app.use('/client', clientRoutes);
 
-const cors = require('cors');
 app.use(cors({
   origin: 'https://practical-cat-production.up.railway.app', // OR '*', for testing only
   credentials: true
