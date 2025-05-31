@@ -1,7 +1,4 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
-import Home from './pages/Home'
-import About from './pages/About'
-import Navbar from './components/Navbar'
 import Login from './pages/Login'
 import Register from './pages/Register'
 import PainterDashboard from './pages/PainterDashboard'
@@ -29,6 +26,10 @@ function App() {
       <div className="app">
         <Routes>
           <Route
+            path="/"
+            element={<Login />}
+          />
+          <Route
             path="/login"
             element={<Login />}
           />
@@ -54,17 +55,7 @@ function App() {
           />
           <Route
             path="*"
-            element={
-              <>
-                <Navbar />
-                <main className="container">
-                  <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/about" element={<About />} />
-                  </Routes>
-                </main>
-              </>
-            }
+            element={<Navigate to="/" replace />}
           />
         </Routes>
       </div>
