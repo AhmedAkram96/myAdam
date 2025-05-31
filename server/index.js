@@ -16,7 +16,10 @@ const app = express();
 const server = http.createServer(app);
 
 // Middleware
-app.use(cors());
+app.use(cors({
+  origin: '*',
+  credentials: true
+}));
 app.use(express.json());
 
 // Connect to MongoDB
@@ -34,12 +37,6 @@ app.get('/', (req, res) => {
 app.use('/auth', authRoutes);
 app.use('/painter', painterRoutes);
 app.use('/client', clientRoutes);
-
-app.use(cors({
-  origin: 'https://practical-cat-production.up.railway.app', // OR '*', for testing only
-  credentials: true
-}));
-
 
 // Start the server
 const PORT = process.env.PORT || 5000;

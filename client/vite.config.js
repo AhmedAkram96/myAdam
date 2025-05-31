@@ -13,8 +13,9 @@ export default defineConfig(({ mode }) => {
       port: 3000,
       proxy: {
         '/api': {
-          target: env.VITE_API_URL,
+          target: env.VITE_API_URL || 'http://localhost:5000',
           changeOrigin: true,
+          secure: false,
           rewrite: path => path.replace(/^\/api/, '')
         }
       }
@@ -23,6 +24,10 @@ export default defineConfig(({ mode }) => {
       alias: {
         crypto: 'crypto-js'
       }
+    },
+    build: {
+      outDir: 'dist',
+      sourcemap: true
     }
   };
 });
