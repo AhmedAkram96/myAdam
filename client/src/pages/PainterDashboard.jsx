@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { getApiUrl } from '../utils/api';
 
 const getUser = () => {
   try {
@@ -52,7 +53,7 @@ const PainterDashboard = () => {
     setError('');
     try {
       const token = localStorage.getItem('token');
-      let url = '/api/painter/appointments';
+      let url = getApiUrl('/painter/appointments');
       const params = [];
       const status = statusOverride !== undefined ? statusOverride : statusFilter;
       if (status) params.push(`status=${status}`);
@@ -91,7 +92,7 @@ const PainterDashboard = () => {
         const endTime = new Date(`${slotDate}T${end}`).toISOString();
         return { startTime, endTime };
       });
-      const res = await fetch('/api/painter/appointments', {
+      const res = await fetch(getApiUrl('/painter/appointments'), {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

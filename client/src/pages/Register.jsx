@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import { getApiUrl } from '../utils/api';
 
 const Register = () => {
   const [username, setUsername] = useState('');
@@ -21,7 +22,7 @@ const Register = () => {
       return;
     }
     try {
-      const res = await fetch('/api/auth/signup', {
+      const res = await fetch(getApiUrl('/auth/signup'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, password, city, isPainter: userType === 'painter' }),

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { getApiUrl } from '../utils/api';
 
 const getUser = () => {
   try {
@@ -40,7 +41,7 @@ const ClientDashboard = () => {
     setError('');
     try {
       const token = localStorage.getItem('token');
-      let url = '/api/client/appointments';
+      let url = getApiUrl('/client/appointments');
       if (tabType === 'upcoming') url += `?status=booked`;
       const res = await fetch(url, {
         headers: { Authorization: `Bearer ${token}` },
@@ -78,7 +79,7 @@ const ClientDashboard = () => {
       const { start, end } = SLOT_TIMES[selectedSlot];
       const startTime = new Date(`${bookingDate}T${start}`).toISOString();
       const endTime = new Date(`${bookingDate}T${end}`).toISOString();
-      const res = await fetch('/api/client/appointments/request', {
+      const res = await fetch(getApiUrl('/client/appointments/request'), {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -109,7 +110,7 @@ const ClientDashboard = () => {
     }
     try {
       const token = localStorage.getItem('token');
-      const res2 = await fetch('/api/client/appointments/confirm', {
+      const res2 = await fetch(getApiUrl('/client/appointments/confirm'), {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
