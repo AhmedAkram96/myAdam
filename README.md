@@ -2,7 +2,7 @@
 
 This repo represents the solution for the task requested by MyAdam.
 
-It includes Server and Client directories.
+It could be accessed directly from: https://practical-cat-production.up.railway.app/
 
 ## functionalities:
 
